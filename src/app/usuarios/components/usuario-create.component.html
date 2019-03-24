@@ -1,0 +1,75 @@
+<mat-card class="bg">
+    <mat-card-content class="form">
+        <div class="text-center">
+            <h1>
+                Cursos de Verano Pro
+            </h1>
+            <mat-card-subtitle>
+                No dejes pasar esta incre&iacute;ble oportunidad. Inscr&iacute;bete ac&aacute;.
+            </mat-card-subtitle>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div fxLayout="row wrap" fxLayoutAlign="space-between">
+                <div fxFlex.gt-sm="49" fxFlex="100">
+                    <mat-label>Nombre <span class="obligatorio">*</span></mat-label>
+                    <mat-form-field appearance="outline">
+                        <input matInput placeholder="Ej. José Canseco" [formControl]="form.controls['nombre']" class="capitalize" autocomplete="off">
+                    </mat-form-field>
+                    <mat-hint *ngIf="form.controls['nombre'].hasError('required') && form.controls['nombre'].touched" class="text-danger font-14">
+                        <div class="error">Ingrese su nombre.</div>
+                    </mat-hint>
+                    <mat-hint *ngIf="(form.controls['nombre'].hasError('minlength') || form.controls['nombre'].hasError('personname')) && form.controls['nombre'].touched" class="text-danger font-14">
+                        <div class="error">Ingrese su nombre correctamente.</div>
+                    </mat-hint>
+                </div>
+                <div fxFlex.gt-sm="49" fxFlex="100">
+                    <mat-label>Tel&eacute;fono <span class="obligatorio">*</span></mat-label>
+                    <mat-form-field appearance="outline">
+                        <input mask="+000 0000 0000" matInput placeholder="Ej. +569 3772 9376" [formControl]="form.controls['telefono']" autocomplete="off">
+                    </mat-form-field>
+                    <mat-hint *ngIf="form.controls['telefono'].hasError('required') && form.controls['telefono'].touched" class="text-danger font-14">
+                        <div class="error">Ingrese su n&uacute;mero telef&oacute;nico.</div>
+                    </mat-hint>
+                    <mat-hint *ngIf="form.controls['telefono'].hasError('minlength') && form.controls['telefono'].touched" class="text-danger font-14">
+                        <div class="error">Ingrese su n&uacute;mero telef&oacute;nico correctamente.</div>
+                    </mat-hint>
+                </div>
+                <div fxFlex.gt-sm="49" fxFlex="100">
+                    <mat-label>Correo <span class="obligatorio">*</span></mat-label>
+                    <mat-form-field appearance="outline">
+                        <input matInput placeholder="Ej. correo@gmail.com" [formControl]="form.controls['correo']" class="lowercase" (paste)="onEmailPaste()" autocomplete="off">
+                    </mat-form-field>
+                    <mat-hint *ngIf="form.controls['correo'].hasError('required') && form.controls['correo'].touched" class="text-danger font-14">
+                        <div class="error">Ingrese su correo.</div>
+                    </mat-hint>
+                    <mat-hint *ngIf="form.controls['correo'].errors?.email && form.controls['correo'].touched" class="text-danger font-14">
+                        <div class="error">Ingrese su correo correctamente.</div>
+                    </mat-hint>
+                    <mat-hint *ngIf="form.controls['correo'].hasError('existsEmail') && form.controls['correo'].touched" class="text-danger font-14">
+                        <div class="error">El correo ya se encuentra registrado.</div>
+                    </mat-hint>
+                </div>
+                <div fxFlex.gt-sm="49" fxFlex="100">
+                    <mat-label>RUT <span class="obligatorio">*</span></mat-label>
+                    <mat-form-field appearance="outline">
+                        <input matInput placeholder="Ej. 26.492.283-1" maxlength="12" [formControl]="form.controls['rut']" class="uppercase" (paste)="onRutPaste()" autocomplete="off">
+                    </mat-form-field>
+                    <mat-hint *ngIf="form.controls['rut'].hasError('required') && form.controls['rut'].touched" class="text-danger font-14">
+                        <div class="error">Ingrese el rut.</div>
+                    </mat-hint>
+                    <mat-hint *ngIf="(form.controls['rut'].hasError('minlength') || form.controls['rut'].hasError('invalidRut')) && form.controls['rut'].touched" class="text-danger font-14">
+                        <div class="error">Ingrese el rut correctamente.</div>
+                    </mat-hint>
+                    <mat-hint *ngIf="form.controls['rut'].hasError('existsRut') && form.controls['rut'].touched" class="text-danger font-14">
+                        <div class="error">El rut ya se encuentra registrado.</div>
+                    </mat-hint>
+                </div>
+            </div>
+            <mat-card-actions>
+                <button type="submit" fxFlex="100" mat-raised-button class="mat-elevation-z4" [disabled]="!form.valid">
+                    Inscribirse
+                </button>
+            </mat-card-actions>
+        </form>
+    </mat-card-content>
+</mat-card>

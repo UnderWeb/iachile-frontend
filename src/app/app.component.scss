@@ -1,0 +1,10 @@
+.toolbar {
+    margin: 0 auto;
+    max-width: 1024px !important;
+}
+
+@media screen and (min-width: 960px) {
+    img {
+        margin-left: 20px;
+    }
+}
